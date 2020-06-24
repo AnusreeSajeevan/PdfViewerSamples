@@ -1,6 +1,5 @@
 package com.example.pdfviewersample
 
-import android.Manifest
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.pm.PackageManager
 import android.os.Build
@@ -37,18 +36,18 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun checkPermission(view: View) {
-        val result = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        val result = ContextCompat.checkSelfPermission(this, READ_EXTERNAL_STORAGE)
         if (result == PackageManager.PERMISSION_GRANTED) {
             displayPdfUsingDefaultApp()
         } else {
             // User may have declined earlier, ask Android if we should show him a reason
-            if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            if (shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE)) {
                 // show an explanation to the user
                 // Good practise: don't block thread after the user sees the explanation, try again to request the permission.
             } else {
                 // request the permission.
                 // CALLBACK_NUMBER is a integer constants
-                requestPermissions(arrayOf<String>(Manifest.permission.READ_EXTERNAL_STORAGE), 2000);
+                requestPermissions(arrayOf<String>(READ_EXTERNAL_STORAGE), 2000);
                 // The callback method gets the result of the request.
             }
         }
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             2000 -> {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, do your work....
                     displayPdfUsingDefaultApp()
                 } else { // permission denied

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PDF viewer sample</string>
+    <string name="display_pdf_in_third_party_app">Display PDF in third party app</string>
 </resources>
