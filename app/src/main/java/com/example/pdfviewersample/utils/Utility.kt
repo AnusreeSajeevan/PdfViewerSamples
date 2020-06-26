@@ -15,3 +15,7 @@ fun getViewPdfIntent(context: Context, file: File): Intent {
     pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     return Intent.createChooser(pdfIntent, "Open File");
 }
+
+fun getPdfUrl(): String {
+    return "https://mindorks.s3.ap-south-1.amazonaws.com/courses/MindOrks_Android_Online_Professional_Course-Syllabus.pdf"
+}

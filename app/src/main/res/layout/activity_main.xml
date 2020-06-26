@@ -1,19 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/display_pdf_in_third_party_app"
-        android:onClick="checkPermission"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="viewmodel"
+            type="com.example.pdfviewersample.viewmodel.MainActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding">
+
+        <Button
+            android:id="@+id/btn_open_in_other_apps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkPermission"
+            android:text="@string/display_pdf_in_third_party_app"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_render_using_pdf_renderer"
+            android:layout_marginTop="@dimen/padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="renderUsingPdfRenderer"
+            android:text="@string/render_in_app"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_open_in_other_apps" />
+
+        <Button
+            android:id="@+id/btn_render_in_webview"
+            android:layout_marginTop="@dimen/padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="redirectToWebViewActivity"
+            android:text="@string/render_in_webview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_render_using_pdf_renderer" />
+
+        <Button
+            android:id="@+id/btn_hapi_fhir"
+            android:layout_marginTop="@dimen/padding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="redirectToHapiFhirActivity"
+            android:text="@string/hapi_fhir"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_render_in_webview" />
+
+        <FrameLayout
+            android:background="#7C7E7F"
+            app:toggledVisibility="@{viewmodel.renderInApp}"
+            app:layout_constraintTop_toBottomOf="@+id/btn_hapi_fhir"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pdf_renderer_height" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

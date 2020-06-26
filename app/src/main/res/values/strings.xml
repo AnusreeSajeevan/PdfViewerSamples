@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">PDF viewer sample</string>
-    <string name="display_pdf_in_third_party_app">Display PDF in third party app</string>
+    <string name="display_pdf_in_third_party_app">Open PDF in third party app</string>
+    <string name="render_in_app">Render PDF in app</string>
+    <string name="render_in_webview">Render PDF in web view</string>
+    <string name="render_in_pdf_viewer">Render PDF in Android PDF viewer</string>
+    <string name="hapi_fhir">HAPI FHIR</string>
 </resources>

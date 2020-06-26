@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -23,6 +24,18 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
@@ -38,6 +51,9 @@ dependencies {
 
     def lifecycle_version = "2.2.0"
     def koin_version = "2.1.6"
+    def retrofit = "2.6.2"
+    def loggingInterceptor = "4.0.0"
+    def gson_retrofit_converter = "2.7.0"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -47,4 +63,20 @@ dependencies {
     implementation "org.koin:koin-android:$koin_version"
 
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-test:$koin_version"
+
+    implementation "ca.uhn.hapi.fhir:hapi-fhir-android:5.0.2"
+    implementation "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:5.0.2"
+
+    configurations {
+        all*.exclude group: 'org.codehaus.woodstox'
+        all*.exclude group: 'org.apache.httpcomponents'
+    }
+
+    implementation "com.squareup.retrofit2:retrofit:${retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${loggingInterceptor}"
+    implementation "com.squareup.retrofit2:converter-gson:${gson_retrofit_converter}"
 }
