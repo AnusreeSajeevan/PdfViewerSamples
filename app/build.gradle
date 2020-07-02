@@ -68,7 +68,7 @@ dependencies {
     implementation "org.koin:koin-test:$koin_version"
 
     implementation "ca.uhn.hapi.fhir:hapi-fhir-android:5.0.2"
-    implementation "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:5.0.2"
+    implementation "ca.uhn.hapi.fhir:hapi-fhir-structures-r4:5.0.2"
 
     configurations {
         all*.exclude group: 'org.codehaus.woodstox'
@@ -79,4 +79,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit}"
     implementation "com.squareup.okhttp3:logging-interceptor:${loggingInterceptor}"
     implementation "com.squareup.retrofit2:converter-gson:${gson_retrofit_converter}"
+
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc01"
 }

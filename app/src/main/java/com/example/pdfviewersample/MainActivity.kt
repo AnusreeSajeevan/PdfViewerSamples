@@ -6,12 +6,12 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import ca.uhn.fhir.context.FhirContext
 import com.example.pdfviewersample.databinding.ActivityMainBinding
 import com.example.pdfviewersample.viewmodel.MainActivityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@MainActivity, R.layout.activity_main)
         initBindings()
+        var context = FhirContext.forR4()
     }
 
     private fun initBindings() {
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         try {
             startActivity(viewModel.displayPdfUsingDefaultApp())
         } catch (e: Exception) {
-            Toast.makeText(this, "install app", Toast.LENGTH_SHORT).show()
+
         }
     }
 
